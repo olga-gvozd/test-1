@@ -1,9 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {UsersApiService} from "./services/api/users-api.service";
-import {Observable} from "rxjs";
-import {IUserData} from "./types/users.types";
 import {UsersComponent} from "./components/users/users.component";
+import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +10,10 @@ import {UsersComponent} from "./components/users/users.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'project-1';
+export class AppComponent implements OnInit {
+  private primengConfig: PrimeNGConfig = inject(PrimeNGConfig)
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+  }
 }

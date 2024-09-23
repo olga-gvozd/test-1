@@ -19,7 +19,11 @@ export class UsersService {
   getUsers(): Observable<IUserData[]> {
     return this.userApiService.getUsers()
       .pipe(
-        tap((users: IUserData[]) => this.usersSubject$.next(users)),
+        tap((users: IUserData[]) => {
+          if (Array.isArray(users)) {
+            this.usersSubject$.next(users)
+          }
+        }),
       );
   }
 }
